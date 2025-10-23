@@ -1,0 +1,38 @@
+.container {
+  padding: 24px;
+}
+
+.loading-spinner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 60vh;
+  gap: 16px;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+mat-card {
+  display: flex;
+  flex-direction: column;
+}
+
+mat-card-content {
+  flex-grow: 1; // Faz o conteúdo crescer para preencher o espaço
+}
+
+.no-data-message {
+  color: #888;
+  font-style: italic;
+  padding: 16px;
+}
+
+.mat-nav-list .active-link {
+  background-color: rgba(0, 0, 0, 0.1);
+  font-weight: bold;
+}

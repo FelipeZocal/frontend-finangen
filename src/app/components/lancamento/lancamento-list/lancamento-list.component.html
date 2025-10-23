@@ -1,0 +1,55 @@
+<div class="container">
+  <h1>Gerenciamento de Lançamentos</h1>
+
+  <button mat-raised-button color="primary" (click)="openForm()">
+    <mat-icon>add</mat-icon>
+    Novo Lançamento
+  </button>
+
+  <mat-table [dataSource]="lancamentos" class="mat-elevation-z8" *ngIf="lancamentos.length > 0; else noData">
+
+    <ng-container matColumnDef="idLancamento">
+      <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.idLancamento}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="descricao">
+      <mat-header-cell *matHeaderCellDef> Descrição </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.descricao}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="valorLancamento">
+      <mat-header-cell *matHeaderCellDef> Valor </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.valorLancamento | currency:'BRL'}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="dataVencimento">
+      <mat-header-cell *matHeaderCellDef> Vencimento </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.dataVencimento | date:'dd/MM/yyyy'}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="situacao">
+      <mat-header-cell *matHeaderCellDef> Situação </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{ getSituacaoText(element.situacao) }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef> Ações </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <button mat-icon-button color="primary" aria-label="Editar lançamento" (click)="openForm(element)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" aria-label="Deletar lançamento" (click)="deleteLancamento(element.idLancamento)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+
+  <ng-template #noData>
+    <p class="no-data-message">Nenhum lançamento encontrado.</p>
+  </ng-template>
+</div>

@@ -1,0 +1,59 @@
+<h1 mat-dialog-title>{{ isEditMode ? 'Editar Usuário' : 'Novo Usuário' }}</h1>
+
+<div mat-dialog-content>
+  <form [formGroup]="usuarioForm" class="usuario-form">
+    <mat-form-field appearance="fill">
+      <mat-label>Nome Completo</mat-label>
+      <input matInput formControlName="nome" required>
+    </mat-form-field>
+
+    <div class="form-row">
+      <mat-form-field appearance="fill">
+        <mat-label>RG</mat-label>
+        <input matInput formControlName="rg" required>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>CPF</mat-label>
+        <input matInput formControlName="cpf" required>
+      </mat-form-field>
+    </div>
+
+    <div class="form-row">
+      <mat-form-field appearance="fill">
+        <mat-label>Telefone</mat-label>
+        <input matInput formControlName="telefone" required>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Status</mat-label>
+        <mat-select formControlName="status" required>
+            <mat-option [value]="0">ATIVO</mat-option>
+            <mat-option [value]="1">INATIVO</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" type="email" required>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Senha</mat-label>
+      <input matInput formControlName="senha" type="password" [required]="!isEditMode">
+      <mat-hint *ngIf="isEditMode">Deixe em branco para não alterar a senha</mat-hint>
+    </mat-form-field>
+
+    <div *ngIf="errorMessage" class="error-message">
+      {{ errorMessage }}
+    </div>
+  </form>
+</div>
+
+<div mat-dialog-actions align="end">
+  <button mat-button (click)="onCancel()">Cancelar</button>
+  <button mat-raised-button color="primary" [disabled]="usuarioForm.invalid" (click)="onSave()">
+    {{ isEditMode ? 'Atualizar' : 'Salvar' }}
+  </button>
+</div>

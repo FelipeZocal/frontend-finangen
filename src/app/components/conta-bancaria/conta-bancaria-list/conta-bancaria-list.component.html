@@ -1,0 +1,55 @@
+<div class="container">
+  <h1>Gerenciamento de Contas Bancárias</h1>
+
+  <button mat-raised-button color="primary" (click)="openForm()">
+    <mat-icon>add</mat-icon>
+    Nova Conta Bancária
+  </button>
+
+  <mat-table [dataSource]="contas" class="mat-elevation-z8" *ngIf="contas.length > 0; else noData">
+
+    <ng-container matColumnDef="idConta">
+      <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.idConta}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="descricaoConta">
+      <mat-header-cell *matHeaderCellDef> Descrição </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.descricaoConta}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="banco">
+      <mat-header-cell *matHeaderCellDef> Banco </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.razaoSocial}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="numeroConta">
+      <mat-header-cell *matHeaderCellDef> Número da Conta </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.numeroConta}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="saldoConta">
+      <mat-header-cell *matHeaderCellDef> Saldo </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.saldoConta | currency:'BRL'}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef> Ações </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <button mat-icon-button color="primary" aria-label="Editar conta" (click)="openForm(element)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" aria-label="Deletar conta" (click)="deleteConta(element.idConta)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+
+  <ng-template #noData>
+    <p class="no-data-message">Nenhuma conta bancária encontrada.</p>
+  </ng-template>
+</div>

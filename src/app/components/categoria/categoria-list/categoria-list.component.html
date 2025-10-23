@@ -1,0 +1,45 @@
+<div class="container">
+  <h1>Gerenciamento de Categorias</h1>
+
+  <button mat-raised-button color="primary" (click)="openForm()">
+    <mat-icon>add</mat-icon>
+    Nova Categoria
+  </button>
+
+  <mat-table [dataSource]="categorias" class="mat-elevation-z8" *ngIf="categorias.length > 0; else noData">
+
+    <ng-container matColumnDef="idCategoria">
+      <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.idCategoria}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="descricaoCategoria">
+      <mat-header-cell *matHeaderCellDef> Descrição da Categoria </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.descricaoCategoria}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="usuario">
+      <mat-header-cell *matHeaderCellDef> Usuário Associado </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.nome}} (CPF: {{element.cpf}}) </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef> Ações </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <button mat-icon-button color="primary" aria-label="Editar categoria" (click)="openForm(element)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" aria-label="Deletar categoria" (click)="deleteCategoria(element.idCategoria)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+
+  <ng-template #noData>
+    <p class="no-data-message">Nenhuma categoria encontrada.</p>
+  </ng-template>
+</div>

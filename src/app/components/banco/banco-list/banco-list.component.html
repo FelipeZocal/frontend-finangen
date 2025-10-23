@@ -1,0 +1,40 @@
+<div class="container">
+  <h1>Gerenciamento de Bancos</h1>
+
+  <button mat-raised-button color="primary" (click)="openForm()">
+    <mat-icon>add</mat-icon>
+    Novo Banco
+  </button>
+
+  <mat-table [dataSource]="bancos" class="mat-elevation-z8">
+    <ng-container matColumnDef="idBanco">
+      <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.idBanco}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="razaoSocial">
+      <mat-header-cell *matHeaderCellDef> Razão Social </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.razaoSocial}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="status">
+        <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.status === 0 ? 'ATIVO' : 'INATIVO' }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef> Ações </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <button mat-icon-button color="primary" (click)="openForm(element)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" (click)="deleteBanco(element.idBanco)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>

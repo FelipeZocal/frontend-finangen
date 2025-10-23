@@ -1,0 +1,21 @@
+<h1 mat-dialog-title>{{ isEditMode ? 'Editar Banco' : 'Novo Banco' }}</h1>
+<div mat-dialog-content>
+  <form [formGroup]="bancoForm">
+    <mat-form-field appearance="fill">
+      <mat-label>Razão Social</mat-label>
+      <input matInput formControlName="razaoSocial">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Status</mat-label>
+        <mat-select formControlName="status">
+            <mat-option [value]="0">ATIVO</mat-option>
+            <mat-option [value]="1">INATIVO</mat-option>
+        </mat-select>
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onCancel()">Cancelar</button>
+  <button mat-raised-button color="primary" [disabled]="bancoForm.invalid" (click)="onSave()">Salvar</button>
+</div>

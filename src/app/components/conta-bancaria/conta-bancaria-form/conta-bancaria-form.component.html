@@ -1,0 +1,66 @@
+<h1 mat-dialog-title>{{ isEditMode ? 'Editar Conta Bancária' : 'Nova Conta Bancária' }}</h1>
+
+<div mat-dialog-content>
+  <form [formGroup]="contaForm" class="conta-form">
+    <mat-form-field>
+      <mat-label>Descrição da Conta</mat-label>
+      <input matInput formControlName="descricaoConta" placeholder="Ex: Conta Principal" required>
+    </mat-form-field>
+
+    <div class="form-row">
+      <mat-form-field>
+        <mat-label>Agência</mat-label>
+        <input matInput formControlName="agenciaConta" required>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Número da Conta</mat-label>
+        <input matInput formControlName="numeroConta" required>
+      </mat-form-field>
+    </div>
+
+    <div class="form-row">
+      <mat-form-field>
+        <mat-label>Limite</mat-label>
+        <input matInput formControlName="limiteConta" type="number">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Saldo Inicial</mat-label>
+        <input matInput formControlName="saldoConta" type="number" required>
+      </mat-form-field>
+    </div>
+
+    <mat-form-field>
+      <mat-label>Tipo de Conta</mat-label>
+      <mat-select formControlName="tipoConta" required>
+        <mat-option *ngFor="let tipo of tiposConta" [value]="tipo.id">
+          {{ tipo.descricao }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Usuário</mat-label>
+      <mat-select formControlName="id" required>
+        <mat-option *ngFor="let usuario of usuarios" [value]="usuario.id">
+          {{ usuario.nome }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Banco</mat-label>
+      <mat-select formControlName="idBanco" required>
+        <mat-option *ngFor="let banco of bancos" [value]="banco.idBanco">
+          {{ banco.razaoSocial }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
+</div>
+
+<div mat-dialog-actions align="end">
+  <button mat-button (click)="onCancel()">Cancelar</button>
+  <button mat-raised-button color="primary" [disabled]="contaForm.invalid" (click)="onSave()">
+    {{ isEditMode ? 'Atualizar' : 'Salvar' }}
+  </button>
+</div>

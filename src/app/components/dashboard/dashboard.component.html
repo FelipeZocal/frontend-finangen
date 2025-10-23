@@ -1,0 +1,91 @@
+<div class="container">
+  <h1>Prévia de suas finanças</h1>
+
+  <div *ngIf="isLoading; else dashboardContent" class="loading-spinner">
+    <mat-spinner></mat-spinner>
+    <p>Carregando resumo...</p>
+  </div>
+
+  <ng-template #dashboardContent>
+    <div class="dashboard-grid">
+
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>Bancos</mat-card-title>
+          <mat-card-subtitle>Prévia do primeiro banco</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content *ngIf="previewBanco; else noData">
+          <p><strong>ID:</strong> {{ previewBanco.idBanco }}</p>
+          <p><strong>Razão Social:</strong> {{ previewBanco.razaoSocial }}</p>
+        </mat-card-content>
+        <mat-card-actions>
+          <a mat-button routerLink="/bancos">Ver Todos</a>
+        </mat-card-actions>
+      </mat-card>
+
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>Categorias</mat-card-title>
+          <mat-card-subtitle>Prévia da primeira categoria</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content *ngIf="previewCategoria; else noData">
+          <p><strong>ID:</strong> {{ previewCategoria.idCategoria }}</p>
+          <p><strong>Descrição:</strong> {{ previewCategoria.descricaoCategoria }}</p>
+        </mat-card-content>
+        <mat-card-actions>
+          <a mat-button routerLink="/categorias">Ver Todas</a>
+        </mat-card-actions>
+      </mat-card>
+
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>Contas Bancárias</mat-card-title>
+          <mat-card-subtitle>Prévia da primeira conta</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content *ngIf="previewConta; else noData">
+          <p><strong>Descrição:</strong> {{ previewConta.descricaoConta }}</p>
+          <p><strong>Agência/Conta:</strong> {{ previewConta.agenciaConta }} / {{ previewConta.numeroConta }}</p>
+          <p><strong>Saldo:</strong> {{ previewConta.saldoConta | currency:'BRL' }}</p>
+        </mat-card-content>
+        <mat-card-actions>
+          <a mat-button routerLink="/contas">Ver Todas</a>
+        </mat-card-actions>
+      </mat-card>
+
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>Lançamentos</mat-card-title>
+          <mat-card-subtitle>Prévia do primeiro lançamento</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content *ngIf="previewLancamento; else noData">
+          <p><strong>Descrição:</strong> {{ previewLancamento.descricao }}</p>
+          <p><strong>Valor:</strong> {{ previewLancamento.valorLancamento | currency:'BRL' }}</p>
+          <p><strong>Vencimento:</strong> {{ previewLancamento.dataVencimento | date:'dd/MM/yyyy' }}</p>
+        </mat-card-content>
+        <mat-card-actions>
+          <a mat-button routerLink="/lancamentos">Ver Todos</a>
+        </mat-card-actions>
+      </mat-card>
+
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>Usuários</mat-card-title>
+          <mat-card-subtitle>Prévia do primeiro usuário</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content *ngIf="previewUsuario; else noData">
+          <p><strong>Nome:</strong> {{ previewUsuario.nome }}</p>
+          <p><strong>Email:</strong> {{ previewUsuario.email }}</p>
+          <p><strong>CPF:</strong> {{ previewUsuario.cpf }}</p>
+        </mat-card-content>
+        <mat-card-actions>
+          <a mat-button routerLink="/usuarios">Ver Todos</a>
+        </mat-card-actions>
+      </mat-card>
+
+    </div>
+  </ng-template>
+
+  <ng-template #noData>
+    <p class="no-data-message">Nenhum item encontrado.</p>
+  </ng-template>
+</div>

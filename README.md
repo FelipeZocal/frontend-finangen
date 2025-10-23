@@ -108,3 +108,8 @@ A aplicação é populada com dados iniciais para facilitar os testes. Para faze
 * **Senha**: `003`
 
 Após o login, você será redirecionado para o Dashboard e poderá navegar por todas as funcionalidades do sistema.
+
+##  Colaboradores:
+
+* [Arthur Zocal](https://github.com/Arthur-Zocal)
+* [Felipe Zocal](https://github.com/FelipeZocal)

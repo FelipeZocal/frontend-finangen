@@ -10,6 +10,7 @@ export const routes: Routes = [
     component: MainLayoutComponent,
     canActivate: [authGuard],
     children: [
+
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' }, // Garante que a rota vazia vá para o dashboard
       {
         path: 'dashboard',

@@ -60,7 +60,7 @@
         <mat-card-content *ngIf="previewLancamento; else noData">
           <p><strong>Descrição:</strong> {{ previewLancamento.descricao }}</p>
           <p><strong>Valor:</strong> {{ previewLancamento.valorLancamento | currency:'BRL' }}</p>
-          <p><strong>Vencimento:</strong> {{ previewLancamento.dataVencimento | date:'dd/MM/yyyy' }}</p>
+          <p><strong>Vencimento:</strong> {{ previewLancamento.dataVencimento | parseDate | date:'dd/MM/yyyy' }}</p>
         </mat-card-content>
         <mat-card-actions>
           <a mat-button routerLink="/lancamentos">Ver Todos</a>

@@ -25,7 +25,7 @@
 
     <ng-container matColumnDef="dataVencimento">
       <mat-header-cell *matHeaderCellDef> Vencimento </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.dataVencimento | date:'dd/MM/yyyy'}} </mat-cell>
+      <mat-cell *matCellDef="let element"> {{element.dataVencimento | parseDate | date:'dd/MM/yyyy'}} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="situacao">

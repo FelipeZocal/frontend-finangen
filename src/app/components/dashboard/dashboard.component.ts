@@ -6,7 +6,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-
+import { ParseDatePipe } from '../../shared/pipes/parse-date.pipe';
 // Models
 import { Banco } from '../../core/models/banco.model';
 import { Categoria } from '../../core/models/categoria.model';
@@ -32,6 +32,7 @@ CommonModule,
     MatIconModule,
     MatProgressSpinnerModule,
     CurrencyPipe,
+    ParseDatePipe,
     DatePipe
   ],
   templateUrl: './dashboard.component.html',
@@ -55,7 +56,7 @@ export class DashboardComponent implements OnInit {
   isLoading = true;
 
   ngOnInit(): void {
-    // forkJoin executa todas as chamadas em paralelo e retorna quando todas estiverem completas
+    // forkJoin retorna os findAll() de todos os serviços
     forkJoin({
       bancos: this.bancoService.findAll(),
       categorias: this.categoriaService.findAll(),

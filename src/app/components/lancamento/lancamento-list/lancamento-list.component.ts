@@ -4,6 +4,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { ParseDatePipe } from '../../../shared/pipes/parse-date.pipe';
 
 import { Lancamento } from '../../../core/models/lancamento.model';
 import { LancamentoService } from '../../../core/services/lancamento.service';
@@ -19,6 +20,7 @@ import { LancamentoFormComponent } from '../lancamento-form/lancamento-form.comp
     MatButtonModule,
     MatDialogModule,
     CurrencyPipe, // Importe para formatar moeda
+    ParseDatePipe, // Importe para converter string em Date
     DatePipe      // Importe para formatar datas
   ],
   templateUrl: './lancamento-list.component.html',

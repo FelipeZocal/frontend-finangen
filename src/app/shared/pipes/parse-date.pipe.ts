@@ -16,9 +16,8 @@ export class ParseDatePipe implements PipeTransform {
       return null;
     }
 
-    // new Date() espera (ano, mês - 1, dia)
     const day = parseInt(parts[0], 10);
-    const month = parseInt(parts[1], 10) - 1; // Mês em JS é base 0
+    const month = parseInt(parts[1], 10) - 1;
     const year = parseInt(parts[2], 10);
 
     return new Date(year, month, day);

@@ -56,7 +56,7 @@ export class DashboardComponent implements OnInit {
   isLoading = true;
 
   ngOnInit(): void {
-    // forkJoin retorna os findAll() de todos os serviços
+    // forkJoin retorna findAll() de todos os serviços
     forkJoin({
       bancos: this.bancoService.findAll(),
       categorias: this.categoriaService.findAll(),

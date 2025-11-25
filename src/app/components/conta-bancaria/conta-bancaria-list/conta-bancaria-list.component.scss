@@ -1,19 +1,306 @@
+$primary: #2c3e50;
+$secondary: #5d6d7e;
+$accent: #217f8c;
+$text: #2c3e50;
+$light: #f7fafc;
+$border: #e2e8f0;
+$white: #ffffffd8;
+
 .container {
-  padding: 24px;
+  padding: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  min-height: 100vh;
+  background: $light;
+
+  h1 {
+    color: $primary;
+    font-weight: 500;
+    font-size: 2.2rem;
+    margin-bottom: 2rem;
+    letter-spacing: -0.5px;
+  }
 }
 
-.mat-table {
-  width: 100%;
-  margin-top: 20px;
-}
-
+//  Nova Conta Bancária
 button[mat-raised-button] {
-  margin-bottom: 16px;
+  margin-bottom: 2rem;
+  background: $accent;
+  color: $white;
+  font-weight: 500;
+  text-transform: none;
+  letter-spacing: 0.3px;
+  transition: all 0.2s ease;
+  border-radius: 8px;
+  padding: 0 1.5rem;
+
+  &:hover {
+    background: darken($accent, 10%);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  }
+
+  mat-icon {
+    margin-right: 0.5rem;
+    color: $white;
+  }
+}
+
+// Tabela
+.mat-elevation-z8 {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+  border: 1px solid $border;
+  background: $white;
+}
+
+mat-table {
+  background: transparent;
+
+  // Cabeçalho da tabela
+  mat-header-row {
+    background: lighten(#61a7b1, 39%);
+    border-bottom: 1px solid $border;
+
+    mat-header-cell {
+      color: $primary;
+      font-weight: 600;
+      font-size: 0.9rem;
+      padding: 1rem 0.75rem;
+      
+      &:not(:last-child) {
+        border-right: 1px solid $border;
+      }
+    }
+  }
+
+  // Linhas da tabela
+  mat-row {
+    border-bottom: 1px solid $border;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background: lighten(#61a7b1, 44%);
+    }
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    mat-cell {
+      color: $secondary;
+      font-size: 0.88rem;
+      padding: 1rem 0.75rem;
+      
+      &:not(:last-child) {
+        border-right: 1px solid $border;
+      }
+    }
+  }
+
+  // ID
+  .mat-column-idConta {
+    flex: 0 0 80px;
+    text-align: center;
+    
+    mat-cell {
+      font-weight: 500;
+      color: $primary;
+    }
+  }
+
+  // Descrição
+  .mat-column-descricaoConta {
+    flex: 1;
+    min-width: 180px;
+    
+    mat-cell {
+      font-weight: 400;
+    }
+  }
+
+  // Banco
+  .mat-column-banco {
+    flex: 1;
+    min-width: 200px;
+    
+    mat-cell {
+      font-weight: 400;
+    }
+  }
+
+  // Número da Conta
+  .mat-column-numeroConta {
+    flex: 0 0 150px;
+    
+    mat-cell {
+      font-weight: 500;
+      color: $primary;
+      text-align: center;
+    }
+  }
+
+  // Saldo
+  .mat-column-saldoConta {
+    flex: 0 0 140px;
+    
+    mat-cell {
+      font-weight: 600;
+      color: $primary;
+      text-align: right;
+      
+    }
+  }
+
+  // Ações
+  .mat-column-actions {
+    flex: 0 0 120px;
+    
+    .mat-cell {
+      display: flex;
+      gap: 0.25rem;
+      padding: 0.5rem 1.5rem;
+      justify-content: center;
+    }
+    
+    button {
+      width: 2.5rem;
+      height: 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 6px;
+      transition: all 0.2s ease;
+      
+      &:hover {
+        transform: scale(1.05);
+        background: rgba($accent, 0.1);
+      }
+      
+      &.mat-primary {
+        color: $accent;
+      }
+      
+      &.mat-warn {
+        color: #f44336;
+      }
+      
+      mat-icon {
+        font-size: 1.2rem;
+        width: 1.2rem;
+        height: 1.2rem;
+      }
+    }
+  }
+}
+
+button:focus {
+  outline: 2px solid $accent;
+  outline-offset: 2px;
 }
 
 .no-data-message {
-  margin-top: 20px;
-  font-style: italic;
   text-align: center;
-  color: #666;
+  color: $secondary;
+  font-style: normal;
+  padding: 3rem;
+  background: $white;
+  border-radius: 8px;
+  border: 1px solid $border;
+  margin: 2rem 0;
+  font-weight: 400;
+  font-size: 1.1rem;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+
+    h1 {
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+    }
+  }
+
+  button[mat-raised-button] {
+    width: 100%;
+    margin-bottom: 1.5rem;
+  }
+
+  .mat-elevation-z8 {
+    border-radius: 8px;
+  }
+
+  mat-table {
+    .mat-column-idConta {
+      flex: 0 0 60px;
+    }
+
+    .mat-column-numeroConta {
+      flex: 0 0 120px;
+    }
+
+    .mat-column-saldoConta {
+      flex: 0 0 110px;
+    }
+
+    .mat-column-actions {
+      flex: 0 0 100px;
+    }
+
+    mat-header-cell,
+    mat-cell {
+      padding: 0.75rem 0.5rem;
+      font-size: 0.8rem;
+    }
+  }
+
+  .mat-column-actions button {
+    width: 2rem;
+    height: 2rem;
+    
+    mat-icon {
+      font-size: 1rem;
+      width: 1rem;
+      height: 1rem;
+    }
+  }
+
+  .no-data-message {
+    padding: 2rem;
+    font-size: 1rem;
+    margin: 1.5rem 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0.75rem;
+  }
+
+  mat-table {
+    .mat-column-idConta {
+      display: none;
+    }
+
+    .mat-column-numeroConta {
+      flex: 0 0 100px;
+    }
+
+    .mat-column-saldoConta {
+      flex: 0 0 90px;
+    }
+
+    mat-header-cell,
+    mat-cell {
+      padding: 0.5rem 0.25rem;
+      font-size: 0.75rem;
+    }
+  }
+
+  .no-data-message {
+    padding: 1.5rem;
+    font-size: 0.9rem;
+  }
 }

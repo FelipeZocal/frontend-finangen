@@ -8,10 +8,12 @@
 
   <mat-table [dataSource]="usuarios" class="mat-elevation-z8" *ngIf="usuarios.length > 0; else noData">
 
-    <ng-container matColumnDef="id">
-      <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
-    </ng-container>
+    <div class="Usuario-id">
+      <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+      </ng-container>
+    </div>
 
     <ng-container matColumnDef="nome">
       <mat-header-cell *matHeaderCellDef> Nome </mat-header-cell>
@@ -29,17 +31,21 @@
     </ng-container>
 
     <ng-container matColumnDef="status">
-        <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{ element.status === 0 ? 'ATIVO' : 'INATIVO' }} </mat-cell>
+      <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
+      <mat-cell *matCellDef="let element"> 
+        <span class="status-badge" [class.ativo]="element.status === 0" [class.inativo]="element.status === 1">
+          {{ element.status === 0 ? 'ATIVO' : 'INATIVO' }}
+        </span>
+      </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="actions">
       <mat-header-cell *matHeaderCellDef> Ações </mat-header-cell>
       <mat-cell *matCellDef="let element">
-        <button mat-icon-button color="primary" aria-label="Editar usuário" (click)="openForm(element)">
+        <button mat-icon-button color="primary" (click)="openForm(element)">
           <mat-icon>edit</mat-icon>
         </button>
-        <button mat-icon-button color="warn" aria-label="Deletar usuário" (click)="deleteUsuario(element.id)">
+        <button mat-icon-button color="warn" (click)="deleteUsuario(element.id)">
           <mat-icon>delete</mat-icon>
         </button>
       </mat-cell>

@@ -18,6 +18,20 @@
       <mat-cell *matCellDef="let element"> {{element.descricao}} </mat-cell>
     </ng-container>
 
+    <ng-container matColumnDef="categoria">
+      <mat-header-cell *matHeaderCellDef> Categoria </mat-header-cell>
+      <mat-cell *matCellDef="let element"> 
+        {{ getCategoriaNome(element) }}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="tipoLancamento">
+      <mat-header-cell *matHeaderCellDef> Tipo </mat-header-cell>
+      <mat-cell *matCellDef="let element"> 
+        {{ getTipoLancamentoText(element.tipoLancamento) }}
+      </mat-cell>
+    </ng-container>
+
     <ng-container matColumnDef="valorLancamento">
       <mat-header-cell *matHeaderCellDef> Valor </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.valorLancamento | currency:'BRL'}} </mat-cell>
@@ -30,7 +44,14 @@
 
     <ng-container matColumnDef="situacao">
       <mat-header-cell *matHeaderCellDef> Situação </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{ getSituacaoText(element.situacao) }} </mat-cell>
+      <mat-cell *matCellDef="let element"> 
+        <span class="situacao-badge" 
+              [class.em-aberto]="element.situacao === 0" 
+              [class.baixado]="element.situacao === 1" 
+              [class.em-atraso]="element.situacao === 2">
+          {{ getSituacaoText(element.situacao) }}
+        </span>
+      </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="actions">
@@ -39,7 +60,8 @@
         <button mat-icon-button color="primary" aria-label="Editar lançamento" (click)="openForm(element)">
           <mat-icon>edit</mat-icon>
         </button>
-        <button mat-icon-button color="warn" aria-label="Deletar lançamento" (click)="deleteLancamento(element.idLancamento)">
+        <button mat-icon-button color="warn" aria-label="Deletar lançamento"
+          (click)="deleteLancamento(element.idLancamento)">
           <mat-icon>delete</mat-icon>
         </button>
       </mat-cell>

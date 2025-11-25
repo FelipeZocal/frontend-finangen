@@ -18,8 +18,12 @@
     </ng-container>
 
     <ng-container matColumnDef="status">
-        <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{ element.status === 0 ? 'ATIVO' : 'INATIVO' }} </mat-cell>
+      <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
+      <mat-cell *matCellDef="let element"> 
+        <span class="status-badge" [class.ativo]="element.status === 0" [class.inativo]="element.status === 1">
+          {{ element.status === 0 ? 'ATIVO' : 'INATIVO' }}
+        </span>
+      </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="actions">

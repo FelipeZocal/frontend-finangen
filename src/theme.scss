@@ -1,0 +1,31 @@
+@use '@angular/material' as mat;
+
+// Cor primária personalizada (#2c3e50)
+$primary-custom: mat.define-palette((
+  50: #eceff1,
+  100: #cfd8dc,
+  200: #b0bec5,
+  300: #90a4ae,
+  400: #78909c,
+  500: #2c3e50, // COR PRINCIPAL
+  600: #263646,
+  700: #1f2d3b,
+  800: #192531,
+  900: #121c26,
+  contrast: (
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+  )
+));
+
+$custom-theme: mat.define-light-theme((
+  color: (
+    primary: $primary-custom,
+    accent: $primary-custom,
+  )
+));
+
+@include mat.all-component-themes($custom-theme);

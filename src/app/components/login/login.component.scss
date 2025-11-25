@@ -1,32 +1,265 @@
-.login-container {
+$primary: #2c3e50;
+$secondary: #5d6d7e;
+$accent: #61a7b1;
+$text: #2c3e50;
+$light: #f7fafc;
+$border: #e2e8f0;
+$white: #ffffff;
+$error: #e74c3c;
+$success: #2ecc71;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+:host {
+  width: 100%;
+}
+
+body, :host {
+  background-color: $light;
+  color: $text;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  background-color: #f5f5f5;
+  padding: 20px;
 }
 
-mat-card {
-  max-width: 400px;
+.container {
+  display: flex;
+  max-width: 1200px;
   width: 100%;
+  min-height: 700px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
 }
 
-mat-card-content {
+.welcome-section {
+  flex: 1;
+  background: linear-gradient(135deg, $accent 0%, $primary 100%);
+  color: $white;
+  padding: 50px 40px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+}
 
-  mat-form-field {
-    width: 100%;
+.welcome-content {
+  text-align: center;
+
+  h1 {
+    font-size: 32px;
+    margin-bottom: 15px;
+  }
+
+  p {
+    opacity: 0.9;
+    margin-bottom: 30px;
+    line-height: 1.6;
   }
 }
 
-button {
+.features {
+  margin-top: 40px;
+  text-align: left;
+}
+
+.feature {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 15px;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: rgba($white, 0.1);
+    transform: translateX(5px);
+  }
+}
+
+.feature-icon {
+  width: 50px;
+  height: 50px;
+  background: rgba($white, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 15px;
+  transition: all 0.3s ease;
+
+  i {
+    font-size: 20px;
+  }
+
+  .feature:hover & {
+    background: rgba($white, 0.3);
+    transform: scale(1.1);
+  }
+}
+
+.login-section {
+  flex: 1;
+  background-color: $white;
+  padding: 50px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-header {
+  text-align: center;
+  margin-bottom: 40px;
   width: 100%;
-  margin-top: 1rem;
+
+  p {
+    color: $secondary;
+  }
+}
+
+.logo-text {
+  font-size: 48px;
+  font-weight: 700;
+  background: linear-gradient(135deg, $primary, lighten($primary, 15%));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 10px;
+  padding: 10px 0;
+}
+
+form {
+  width: 100%;
+  max-width: 400px;
+}
+
+.form-group {
+  margin-bottom: 25px;
+
+  label {
+    font-weight: 500;
+    margin-bottom: 8px;
+    display: block;
+    color: $text;
+  }
+}
+
+.input-with-icon {
+  position: relative;
+
+  i {
+    position: absolute;
+    left: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: $secondary;
+    font-size: 16px;
+    transition: all 0.3s ease;
+  }
+
+  input {
+    width: 100%;
+    padding: 15px 15px 15px 48px;
+    border: 1px solid $border;
+    border-radius: 10px;
+    transition: 0.3s;
+    font-size: 16px;
+
+    &:focus {
+      border-color: $accent;
+      box-shadow: 0 0 0 3px rgba($accent, 0.2);
+
+      + i {
+        color: $accent;
+        transform: translateY(-50%) scale(1.1);
+      }
+    }
+  }
 }
 
 .error-message {
-  color: red;
+  color: $error;
+  font-size: 14px;
+  margin-bottom: 10px;
   text-align: center;
-  margin-top: 10px;
+  padding: 10px;
+  background: rgba($error, 0.1);
+  border-radius: 5px;
+}
+
+.login-button {
+  width: 100%;
+  padding: 15px 20px;
+  margin-top: 15px;
+  background: linear-gradient(135deg, $accent 0%, darken($accent, 10%) 100%);
+  color: $white;
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  &:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba($accent, 0.3);
+
+    i {
+      transform: translateX(3px);
+    }
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  i {
+    transition: transform 0.3s ease;
+  }
+}
+
+.footer {
+  text-align: center;
+  margin-top: 30px;
+  color: $secondary;
+  font-size: 14px;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    min-height: auto;
+  }
+
+  .welcome-section,
+  .login-section {
+    padding: 30px 20px;
+  }
+
+  .logo-text {
+    font-size: 42px;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo-text {
+    font-size: 38px;
+  }
+  
+  .welcome-content h1 {
+    font-size: 28px;
+  }
 }

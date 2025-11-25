@@ -7,7 +7,9 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { ParseDatePipe } from '../../../shared/pipes/parse-date.pipe';
 
 import { Lancamento } from '../../../core/models/lancamento.model';
+import { Categoria } from '../../../core/models/categoria.model';
 import { LancamentoService } from '../../../core/services/lancamento.service';
+import { CategoriaService } from '../../../core/services/categoria.service';
 import { LancamentoFormComponent } from '../lancamento-form/lancamento-form.component';
 
 @Component({
@@ -19,22 +21,41 @@ import { LancamentoFormComponent } from '../lancamento-form/lancamento-form.comp
     MatIconModule,
     MatButtonModule,
     MatDialogModule,
-    CurrencyPipe, // Formata a inserção do dinheiro
-    ParseDatePipe, // Converte a string para formato DATA
-    DatePipe      // Formata a inserção de datas
+    CurrencyPipe,
+    ParseDatePipe,
+    DatePipe
   ],
   templateUrl: './lancamento-list.component.html',
   styleUrls: ['./lancamento-list.component.scss']
 })
 export class LancamentoListComponent implements OnInit {
   private lancamentoService = inject(LancamentoService);
+  private categoriaService = inject(CategoriaService);
   private dialog = inject(MatDialog);
 
   lancamentos: Lancamento[] = [];
-  displayedColumns: string[] = ['idLancamento', 'descricao', 'valorLancamento', 'dataVencimento', 'situacao', 'actions'];
+  categorias: Categoria[] = [];
+  
+  displayedColumns: string[] = [
+    'idLancamento', 
+    'descricao', 
+    'categoria',
+    'tipoLancamento', 
+    'valorLancamento', 
+    'dataVencimento', 
+    'situacao', 
+    'actions'
+  ];
 
   ngOnInit(): void {
+    this.loadCategorias();
     this.loadLancamentos();
+  }
+
+  loadCategorias(): void {
+    this.categoriaService.findAll().subscribe(data => {
+      this.categorias = data;
+    });
   }
 
   loadLancamentos(): void {
@@ -70,7 +91,6 @@ export class LancamentoListComponent implements OnInit {
     }
   }
 
-  // Transforma o Enum da API em String para ser exibido
   getSituacaoText(situacaoId: number): string {
     switch (situacaoId) {
       case 0: return 'EM ABERTO';
@@ -78,5 +98,21 @@ export class LancamentoListComponent implements OnInit {
       case 2: return 'EM ATRASO';
       default: return 'Desconhecido';
     }
+  }
+
+  getTipoLancamentoText(tipoId: number): string {
+    switch (tipoId) {
+      case 0: return 'CRÉDITO';
+      case 1: return 'DÉBITO';
+      default: return 'DESCONHECIDO';
+    }
+  }
+
+  // MÉTODO CORRIGIDO - Busca o nome da categoria pelo idCategoria
+  getCategoriaNome(lancamento: Lancamento): string {
+    if (!lancamento.idCategoria) return 'N/A';
+    
+    const categoria = this.categorias.find(cat => cat.idCategoria === lancamento.idCategoria);
+    return categoria?.descricaoCategoria || `Categoria ${lancamento.idCategoria}`;
   }
 }

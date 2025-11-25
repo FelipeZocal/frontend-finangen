@@ -1,91 +1,190 @@
 <div class="container">
-  <h1>Prévia de suas informações</h1>
-
-  <div *ngIf="isLoading; else dashboardContent" class="loading-spinner">
-    <mat-spinner></mat-spinner>
-    <p>Carregando resumo...</p>
+  <div class="header">
+    <h1>Prévia de suas informações</h1>
   </div>
 
-  <ng-template #dashboardContent>
-    <div class="dashboard-grid">
-
-      <mat-card>
-        <mat-card-header>
-          <mat-card-title>Bancos</mat-card-title>
-          <mat-card-subtitle>Clique em "Ver Todos" para acessar</mat-card-subtitle>
-        </mat-card-header>
-        <mat-card-content *ngIf="previewBanco; else noData">
-          <p><strong>ID:</strong> {{ previewBanco.idBanco }}</p>
-          <p><strong>Razão Social:</strong> {{ previewBanco.razaoSocial }}</p>
-        </mat-card-content>
-        <mat-card-actions>
-          <a mat-button routerLink="/bancos">Ver Todos</a>
-        </mat-card-actions>
-      </mat-card>
-
-      <mat-card>
-        <mat-card-header>
-          <mat-card-title>Categorias</mat-card-title>
-          <mat-card-subtitle>Clique em "Ver Todos" para acessar</mat-card-subtitle>
-        </mat-card-header>
-        <mat-card-content *ngIf="previewCategoria; else noData">
-          <p><strong>ID:</strong> {{ previewCategoria.idCategoria }}</p>
-          <p><strong>Descrição:</strong> {{ previewCategoria.descricaoCategoria }}</p>
-        </mat-card-content>
-        <mat-card-actions>
-          <a mat-button routerLink="/categorias">Ver Todas</a>
-        </mat-card-actions>
-      </mat-card>
-
-      <mat-card>
-        <mat-card-header>
-          <mat-card-title>Contas Bancárias</mat-card-title>
-          <mat-card-subtitle>Clique em "Ver Todos" para acessar</mat-card-subtitle>
-        </mat-card-header>
-        <mat-card-content *ngIf="previewConta; else noData">
-          <p><strong>Descrição:</strong> {{ previewConta.descricaoConta }}</p>
-          <p><strong>Agência/Conta:</strong> {{ previewConta.agenciaConta }} / {{ previewConta.numeroConta }}</p>
-          <p><strong>Saldo:</strong> {{ previewConta.saldoConta | currency:'BRL' }}</p>
-        </mat-card-content>
-        <mat-card-actions>
-          <a mat-button routerLink="/contas">Ver Todas</a>
-        </mat-card-actions>
-      </mat-card>
-
-      <mat-card>
-        <mat-card-header>
-          <mat-card-title>Lançamentos</mat-card-title>
-          <mat-card-subtitle>Clique em "Ver Todos" para acessar</mat-card-subtitle>
-        </mat-card-header>
-        <mat-card-content *ngIf="previewLancamento; else noData">
-          <p><strong>Descrição:</strong> {{ previewLancamento.descricao }}</p>
-          <p><strong>Valor:</strong> {{ previewLancamento.valorLancamento | currency:'BRL' }}</p>
-          <p><strong>Vencimento:</strong> {{ previewLancamento.dataVencimento | parseDate | date:'dd/MM/yyyy' }}</p>
-        </mat-card-content>
-        <mat-card-actions>
-          <a mat-button routerLink="/lancamentos">Ver Todos</a>
-        </mat-card-actions>
-      </mat-card>
-
-      <mat-card>
-        <mat-card-header>
-          <mat-card-title>Usuários</mat-card-title>
-          <mat-card-subtitle>Clique em "Ver Todos" para acessar</mat-card-subtitle>
-        </mat-card-header>
-        <mat-card-content *ngIf="previewUsuario; else noData">
-          <p><strong>Nome:</strong> {{ previewUsuario.nome }}</p>
-          <p><strong>Email:</strong> {{ previewUsuario.email }}</p>
-          <p><strong>CPF:</strong> {{ previewUsuario.cpf }}</p>
-        </mat-card-content>
-        <mat-card-actions>
-          <a mat-button routerLink="/usuarios">Ver Todos</a>
-        </mat-card-actions>
-      </mat-card>
-
+  <div class="content">
+    <div *ngIf="isLoading; else dashboard" class="loading">
+      <div class="spinner">
+        <mat-spinner></mat-spinner>
+        <p>Carregando resumo...</p>
+      </div>
     </div>
-  </ng-template>
 
-  <ng-template #noData>
-    <p class="no-data-message">Nenhum item encontrado.</p>
-  </ng-template>
+    <ng-template #dashboard>
+      <div class="dashboard">
+        <div class="grid">
+
+          <div class="card-item">
+            <mat-card class="card">
+              <div class="card-header">
+                <mat-card-header>
+                  <mat-card-title>Bancos</mat-card-title>
+                  <mat-card-subtitle>Clique em "Ver Todos" para acessar</mat-card-subtitle>
+                </mat-card-header>
+              </div>
+              <div class="card-body">
+                <mat-card-content *ngIf="previewBanco; else noData">
+                  <div class="info">
+                    <span class="label">ID:</span>
+                    <span class="value">{{ previewBanco.idBanco }}</span>
+                  </div>
+                  <div class="info">
+                    <span class="label">Razão Social:</span>
+                    <span class="value">{{ previewBanco.razaoSocial }}</span>
+                  </div>
+                </mat-card-content>
+              </div>
+              <div class="card-footer">
+                <mat-card-actions>
+                  <div class="btn-container">
+                    <a mat-button routerLink="/bancos" class="btn">Ver Todos</a>
+                  </div>
+                </mat-card-actions>
+              </div>
+            </mat-card>
+          </div>
+
+          <div class="card-item">
+            <mat-card class="card">
+              <div class="card-header">
+                <mat-card-header>
+                  <mat-card-title>Categorias</mat-card-title>
+                  <mat-card-subtitle>Clique em "Ver Todos" para acessar</mat-card-subtitle>
+                </mat-card-header>
+              </div>
+              <div class="card-body">
+                <mat-card-content *ngIf="previewCategoria; else noData">
+                  <div class="info">
+                    <span class="label">ID:</span>
+                    <span class="value">{{ previewCategoria.idCategoria }}</span>
+                  </div>
+                  <div class="info">
+                    <span class="label">Descrição:</span>
+                    <span class="value">{{ previewCategoria.descricaoCategoria }}</span>
+                  </div>
+                </mat-card-content>
+              </div>
+              <div class="card-footer">
+                <mat-card-actions>
+                  <div class="btn-container">
+                    <a mat-button routerLink="/categorias" class="btn">Ver Todas</a>
+                  </div>
+                </mat-card-actions>
+              </div>
+            </mat-card>
+          </div>
+
+          <div class="card-item">
+            <mat-card class="card">
+              <div class="card-header">
+                <mat-card-header>
+                  <mat-card-title>Contas Bancárias</mat-card-title>
+                  <mat-card-subtitle>Clique em "Ver Todos" para acessar</mat-card-subtitle>
+                </mat-card-header>
+              </div>
+              <div class="card-body">
+                <mat-card-content *ngIf="previewConta; else noData">
+                  <div class="info">
+                    <span class="label">Descrição:</span>
+                    <span class="value">{{ previewConta.descricaoConta }}</span>
+                  </div>
+                  <div class="info">
+                    <span class="label">Agência/Conta:</span>
+                    <span class="value">{{ previewConta.agenciaConta }} / {{ previewConta.numeroConta }}</span>
+                  </div>
+                  <div class="info">
+                    <span class="label">Saldo:</span>
+                    <span class="value">{{ previewConta.saldoConta | currency:'BRL' }}</span>
+                  </div>
+                </mat-card-content>
+              </div>
+              <div class="card-footer">
+                <mat-card-actions>
+                  <div class="btn-container">
+                    <a mat-button routerLink="/contas" class="btn">Ver Todas</a>
+                  </div>
+                </mat-card-actions>
+              </div>
+            </mat-card>
+          </div>
+
+          <div class="card-item">
+            <mat-card class="card">
+              <div class="card-header">
+                <mat-card-header>
+                  <mat-card-title>Lançamentos</mat-card-title>
+                  <mat-card-subtitle>Clique em "Ver Todos" para acessar</mat-card-subtitle>
+                </mat-card-header>
+              </div>
+              <div class="card-body">
+                <mat-card-content *ngIf="previewLancamento; else noData">
+                  <div class="info">
+                    <span class="label">Descrição:</span>
+                    <span class="value">{{ previewLancamento.descricao }}</span>
+                  </div>
+                  <div class="info">
+                    <span class="label">Valor:</span>
+                    <span class="value">{{ previewLancamento.valorLancamento | currency:'BRL' }}</span>
+                  </div>
+                  <div class="info">
+                    <span class="label">Vencimento:</span>
+                    <span class="value">{{ previewLancamento.dataVencimento | parseDate | date:'dd/MM/yyyy' }}</span>
+                  </div>
+                </mat-card-content>
+              </div>
+              <div class="card-footer">
+                <mat-card-actions>
+                  <div class="btn-container">
+                    <a mat-button routerLink="/lancamentos" class="btn">Ver Todos</a>
+                  </div>
+                </mat-card-actions>
+              </div>
+            </mat-card>
+          </div>
+
+          <div class="card-item">
+            <mat-card class="card">
+              <div class="card-header">
+                <mat-card-header>
+                  <mat-card-title>Usuários</mat-card-title>
+                  <mat-card-subtitle>Clique em "Ver Todos" para acessar</mat-card-subtitle>
+                </mat-card-header>
+              </div>
+              <div class="card-body">
+                <mat-card-content *ngIf="previewUsuario; else noData">
+                  <div class="info">
+                    <span class="label">Nome:</span>
+                    <span class="value">{{ previewUsuario.nome }}</span>
+                  </div>
+                  <div class="info">
+                    <span class="label">Email:</span>
+                    <span class="value">{{ previewUsuario.email }}</span>
+                  </div>
+                  <div class="info">
+                    <span class="label">CPF:</span>
+                    <span class="value">{{ previewUsuario.cpf }}</span>
+                  </div>
+                </mat-card-content>
+              </div>
+              <div class="card-footer">
+                <mat-card-actions>
+                  <div class="btn-container">
+                    <a mat-button routerLink="/usuarios" class="btn">Ver Todos</a>
+                  </div>
+                </mat-card-actions>
+              </div>
+            </mat-card>
+          </div>
+
+        </div>
+      </div>
+    </ng-template>
+
+    <ng-template #noData>
+      <div class="no-data">
+        <p class="no-data-text">Nenhum item encontrado.</p>
+      </div>
+    </ng-template>
+  </div>
 </div>

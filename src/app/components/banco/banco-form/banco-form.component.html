@@ -1,21 +1,32 @@
-<h1 mat-dialog-title>{{ isEditMode ? 'Editar Banco' : 'Novo Banco' }}</h1>
-<div mat-dialog-content>
-  <form [formGroup]="bancoForm">
-    <mat-form-field appearance="fill">
-      <mat-label>Razão Social</mat-label>
-      <input matInput formControlName="razaoSocial">
-    </mat-form-field>
-
-    <mat-form-field appearance="fill">
-        <mat-label>Status</mat-label>
-        <mat-select formControlName="status">
+<div class="banco-dialog">
+  <div class="dialog-title">
+    <h1>{{ isEditMode ? 'Editar Banco' : 'Novo Banco' }}</h1>
+  </div>
+  
+  <div class="dialog-content">
+    <div class="form-container" [formGroup]="bancoForm">
+      <div class="form-field">
+        <mat-form-field appearance="fill">
+          <mat-label>Razão Social</mat-label>
+          <input matInput formControlName="razaoSocial" placeholder="Digite a razão social">
+        </mat-form-field>
+      </div>
+      <div class="form-field">
+        <mat-form-field appearance="fill">
+          <mat-label>Status</mat-label>
+          <mat-select formControlName="status">
             <mat-option [value]="0">ATIVO</mat-option>
             <mat-option [value]="1">INATIVO</mat-option>
-        </mat-select>
-    </mat-form-field>
-  </form>
-</div>
-<div mat-dialog-actions>
-  <button mat-button (click)="onCancel()">Cancelar</button>
-  <button mat-raised-button color="primary" [disabled]="bancoForm.invalid" (click)="onSave()">Salvar</button>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+  
+  <div class="dialog-actions">
+    <button mat-button class="btn-cancel" (click)="onCancel()">Cancelar</button>
+    <button mat-raised-button class="btn-save" [disabled]="bancoForm.invalid" (click)="onSave()">
+      {{ isEditMode ? 'Atualizar' : 'Salvar' }}
+    </button>
+  </div>
 </div>

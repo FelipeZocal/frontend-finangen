@@ -11,7 +11,7 @@ export const routes: Routes = [
     canActivate: [authGuard],
     children: [
 
-      { path: '', redirectTo: 'dashboard', pathMatch: 'full' }, // Garante que a rota vazia vá para o dashboard
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' }, // Garante que a rota  vá para o dashboard
       {
         path: 'dashboard',
         loadComponent: () => import('./components/dashboard/dashboard.component').then(m => m.DashboardComponent)

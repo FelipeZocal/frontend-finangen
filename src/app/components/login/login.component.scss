@@ -37,6 +37,15 @@ body, :host {
   border-radius: 20px;
   overflow: hidden;
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+
+  &.register-mode {
+    max-width: 500px;
+    min-height: auto;
+    
+    .login-section {
+      flex: 1;
+    }
+  }
 }
 
 .welcome-section {
@@ -76,10 +85,22 @@ body, :host {
   padding: 15px;
   border-radius: 10px;
   transition: all 0.3s ease;
+  cursor: pointer;
 
   &:hover {
     background: rgba($white, 0.1);
-    transform: translateX(5px);
+    transform: translateX(10px);
+    
+    .feature-icon {
+      background: rgba($white, 0.3);
+      transform: scale(1.1);
+    }
+    
+    .feature-text {
+      h3, p {
+        opacity: 1;
+      }
+    }
   }
 }
 
@@ -96,11 +117,23 @@ body, :host {
 
   i {
     font-size: 20px;
+    transition: all 0.3s ease;
+  }
+}
+
+.feature-text {
+  h3 {
+    font-size: 18px;
+    margin-bottom: 5px;
+    transition: all 0.3s ease;
   }
 
-  .feature:hover & {
-    background: rgba($white, 0.3);
-    transform: scale(1.1);
+  p {
+    opacity: 0.8;
+    font-size: 14px;
+    line-height: 1.4;
+    margin-bottom: 0;
+    transition: all 0.3s ease;
   }
 }
 
@@ -112,15 +145,54 @@ body, :host {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: relative;
+
+  &.full-width {
+    flex: 1;
+    padding: 60px 40px;
+  }
+}
+
+.back-button {
+  position: absolute;
+  top: 10px;
+  left: 20px;
+  background: linear-gradient(135deg, $accent 0%, darken($accent, 10%) 100%);
+  color: $white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: 0 4px 15px rgba($accent, 0.2);
+  transition: all 0.3s ease;
+  width: auto;
+
+  &:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba($accent, 0.3);
+    color: $text;
+  }
+
+  i {
+    font-size: 14px;
+  }
 }
 
 .login-header {
   text-align: center;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
   width: 100%;
 
   p {
     color: $secondary;
+    margin-top: 10px;
+    font-size: 16px;
   }
 }
 
@@ -133,6 +205,35 @@ body, :host {
   background-clip: text;
   margin-bottom: 10px;
   padding: 10px 0;
+}
+
+.form-tabs {
+  display: none;
+}
+
+.register-link {
+  text-align: center;
+  margin-top: 20px;
+  width: 100%;
+  
+  p {
+    color: $secondary;
+    margin-bottom: 0;
+    font-size: 14px;
+  }
+}
+
+.register-link-text {
+  color: $accent;
+  text-decoration: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    color: darken($accent, 15%);
+    text-decoration: underline;
+  }
 }
 
 form {
@@ -169,8 +270,8 @@ form {
     padding: 15px 15px 15px 48px;
     border: 1px solid $border;
     border-radius: 10px;
-    transition: 0.3s;
     font-size: 16px;
+    transition: all 0.3s ease;
 
     &:focus {
       border-color: $accent;
@@ -178,9 +279,21 @@ form {
 
       + i {
         color: $accent;
-        transform: translateY(-50%) scale(1.1);
       }
     }
+  }
+}
+
+.field-error {
+  color: $error;
+  font-size: 12px;
+  margin-top: 5px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+
+  i {
+    font-size: 14px;
   }
 }
 
@@ -194,40 +307,51 @@ form {
   border-radius: 5px;
 }
 
-.login-button {
+.success-message {
+  color: $success;
+  font-size: 14px;
+  margin-bottom: 10px;
+  text-align: center;
+  padding: 10px;
+  background: rgba($success, 0.1);
+  border-radius: 5px;
+}
+
+.login-button, .register-button {
   width: 100%;
   padding: 15px 20px;
   margin-top: 15px;
-  background: linear-gradient(135deg, $accent 0%, darken($accent, 10%) 100%);
   color: $white;
   border: none;
   border-radius: 10px;
   font-weight: 600;
   font-size: 16px;
   cursor: pointer;
-  transition: all 0.3s ease;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
+  transition: all 0.3s ease;
 
   &:hover:not(:disabled) {
     transform: translateY(-2px);
     box-shadow: 0 8px 20px rgba($accent, 0.3);
-
-    i {
-      transform: translateX(3px);
-    }
+    color: $text;
   }
 
   &:disabled {
     opacity: 0.6;
     cursor: not-allowed;
+    transform: none;
   }
+}
 
-  i {
-    transition: transform 0.3s ease;
-  }
+.login-button {
+  background: linear-gradient(135deg, $accent 0%, darken($accent, 10%) 100%);
+}
+
+.register-button {
+  background: linear-gradient(135deg, $accent 0%, darken($accent, 10%) 100%);
 }
 
 .footer {
@@ -238,10 +362,27 @@ form {
   width: 100%;
 }
 
+.spinner {
+  width: 30px;
+  height: 30px;
+  border: 3px solid rgba($accent, 0.3);
+  border-radius: 50%;
+  border-top-color: $accent;
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
 @media (max-width: 768px) {
   .container {
     flex-direction: column;
     min-height: auto;
+    
+    &.register-mode {
+      max-width: 100%;
+    }
   }
 
   .welcome-section,
@@ -252,6 +393,21 @@ form {
   .logo-text {
     font-size: 42px;
   }
+  
+  .back-button {
+    position: relative;
+    top: auto;
+    left: auto;
+    align-self: flex-start;
+    margin-bottom: 20px;
+    width: auto;
+  }
+
+  .feature {
+    &:hover {
+      transform: translateX(5px);
+    }
+  }
 }
 
 @media (max-width: 480px) {
@@ -261,5 +417,22 @@ form {
   
   .welcome-content h1 {
     font-size: 28px;
+  }
+  
+  .login-section {
+    padding: 40px 20px;
+    
+    &.full-width {
+      padding: 50px 20px;
+    }
+  }
+
+  .feature {
+    padding: 10px;
+    
+    &:hover {
+      transform: none;
+      background: rgba($white, 0.05);
+    }
   }
 }

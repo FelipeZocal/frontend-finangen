@@ -17,6 +17,10 @@ export class AuthService {
     );
   }
 
+  register(userData: any): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/register`, userData);
+  }
+
   logout(): void {
     localStorage.removeItem('authToken');
   }
@@ -35,9 +39,9 @@ export class AuthService {
       return false;
     }
     // Opcional: decodificar para verificar a expiração
-     //const decodedToken: any = jwtDecode(token);
-     //const isExpired = decodedToken.exp * 1000 < Date.now();
-     //return !isExpired;
+    // const decodedToken: any = jwtDecode(token);
+    // const isExpired = decodedToken.exp * 1000 < Date.now();
+    // return !isExpired;
     return true;
   }
 }

@@ -4,19 +4,24 @@ import { MainLayoutComponent } from './layout/main-layout/main-layout.component'
 import { LoginComponent } from './components/login/login.component';
 
 export const routes: Routes = [
+  // Redireciona a rota raiz para login
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  
+  // Rota de login (acesso livre)
   { path: 'login', component: LoginComponent },
+  
+  // Rotas protegidas
   {
     path: '',
     component: MainLayoutComponent,
     canActivate: [authGuard],
     children: [
-
-      { path: '', redirectTo: 'dashboard', pathMatch: 'full' }, // Garante que a rota  vá para o dashboard
+      // Redireciona para dashboard quando acessar rotas protegidas
+      { path: 'dashboard', redirectTo: 'dashboard', pathMatch: 'full' },
       {
         path: 'dashboard',
         loadComponent: () => import('./components/dashboard/dashboard.component').then(m => m.DashboardComponent)
       },
-      { path: '', redirectTo: 'bancos', pathMatch: 'full' },
       {
         path: 'bancos',
         loadComponent: () => import('./components/banco/banco-list/banco-list.component').then(m => m.BancoListComponent)
@@ -39,5 +44,7 @@ export const routes: Routes = [
       },
     ]
   },
+  
+  // Redireciona rotas não encontradas para login
   { path: '**', redirectTo: 'login' }
 ];

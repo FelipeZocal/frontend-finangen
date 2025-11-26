@@ -18,3 +18,4 @@ export interface Credenciais {
 export interface Token {
   token: string;
 }
+

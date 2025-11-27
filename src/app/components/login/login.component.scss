@@ -329,6 +329,108 @@ form {
   background: linear-gradient(135deg, $accent 0%, darken($accent, 10%) 100%);
 }
 
+// ESTILOS PARA O LINK DE CADASTRO
+.register-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-top: 25px;
+  padding: 15px 0;
+  border-top: 1px solid $border;
+
+  span {
+    color: $secondary;
+    font-size: 14px;
+  }
+
+  a {
+    color: $accent;
+    font-weight: 600;
+    text-decoration: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: 2px;
+      left: 50%;
+      background-color: $accent;
+      transition: all 0.3s ease;
+      transform: translateX(-50%);
+    }
+
+    &:hover {
+      color: darken($accent, 15%);
+      background-color: rgba($accent, 0.1);
+
+      &::after {
+        width: 80%;
+      }
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+
+    // Remove estilos padrão do Angular Material
+    &.mat-button {
+      min-width: auto;
+      line-height: normal;
+      padding: 4px 8px;
+    }
+  }
+}
+
+// Versão alternativa mais minimalista
+.register-link-minimal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-top: 25px;
+  padding: 15px 0;
+  border-top: 1px solid $border;
+
+  span {
+    color: $secondary;
+    font-size: 14px;
+  }
+
+  a {
+    color: $accent;
+    font-weight: 600;
+    text-decoration: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 4px 0;
+    transition: all 0.2s ease;
+
+    &:hover {
+      color: darken($accent, 20%);
+      text-decoration: underline;
+    }
+
+    // Remove estilos padrão do Angular Material
+    &.mat-button {
+      min-width: auto;
+      line-height: normal;
+      padding: 4px 0;
+    }
+  }
+}
+
 .footer {
   text-align: center;
   margin-top: 30px;
@@ -383,6 +485,15 @@ form {
       transform: translateX(5px);
     }
   }
+
+  .register-link {
+    flex-direction: column;
+    gap: 10px;
+    
+    span {
+      margin-bottom: 5px;
+    }
+  }
 }
 
 @media (max-width: 480px) {
@@ -408,6 +519,13 @@ form {
     &:hover {
       transform: none;
       background: rgba($white, 0.05);
+    }
+  }
+
+  .register-link {
+    a {
+      font-size: 13px;
+      padding: 3px 6px;
     }
   }
 }

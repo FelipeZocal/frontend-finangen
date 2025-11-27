@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
 <div class="register-container">
   <mat-card>
     <mat-card-header>
@@ -46,12 +48,16 @@
         <button mat-raised-button color="primary" type="submit" [disabled]="registerForm.invalid">
           Cadastrar
         </button>
+
+        <div class="login-link">
+          <span>Já tem uma conta?</span>
+          <a class="login-link-text" routerLink="/login">Fazer Login</a>
+        </div>
       </form>
     </mat-card-content>
 
-    <mat-card-actions>
-      <span>Já tem uma conta?</span>
-      <button mat-button color="accent" routerLink="/login">Fazer Login</button>
-    </mat-card-actions>
+    <div class="footer">
+      <p>© 2025 FinanGen</p>
+    </div>
   </mat-card>
 </div>

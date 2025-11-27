@@ -211,31 +211,6 @@ body, :host {
   display: none;
 }
 
-.register-link {
-  margin-top: 20px;
-  text-align: center;
-  border-top: 1px solid #e0e0e0;
-  padding-top: 15px;
-
-  span {
-    margin-right: 5px;
-    color: #666;
-  }
-}
-
-.register-link-text {
-  color: $accent;
-  text-decoration: none;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-
-  &:hover {
-    color: darken($accent, 15%);
-    text-decoration: underline;
-  }
-}
-
 form {
   width: 100%;
   max-width: 400px;
@@ -317,7 +292,7 @@ form {
   border-radius: 5px;
 }
 
-.login-button, .register-button {
+.login-button {
   width: 100%;
   padding: 15px 20px;
   margin-top: 15px;

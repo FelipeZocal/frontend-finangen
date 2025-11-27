@@ -8,12 +8,10 @@
 
   <mat-table [dataSource]="usuarios" class="mat-elevation-z8" *ngIf="usuarios.length > 0; else noData">
 
-    <div class="Usuario-id">
-      <ng-container matColumnDef="id">
-        <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
-      </ng-container>
-    </div>
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+    </ng-container>
 
     <ng-container matColumnDef="nome">
       <mat-header-cell *matHeaderCellDef> Nome </mat-header-cell>
@@ -22,7 +20,7 @@
 
     <ng-container matColumnDef="cpf">
       <mat-header-cell *matHeaderCellDef> CPF </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.cpf}} </mat-cell>
+      <mat-cell *matCellDef="let element"> {{ element.cpf | mask: '000.000.000-00' }} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="email">
@@ -32,7 +30,7 @@
 
     <ng-container matColumnDef="status">
       <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
-      <mat-cell *matCellDef="let element"> 
+      <mat-cell *matCellDef="let element">
         <span class="status-badge" [class.ativo]="element.status === 0" [class.inativo]="element.status === 1">
           {{ element.status === 0 ? 'ATIVO' : 'INATIVO' }}
         </span>

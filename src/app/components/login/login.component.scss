@@ -310,7 +310,7 @@ form {
 
   &:hover:not(:disabled) {
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba($accent, 0.2);
+    box-shadow: 0 8px 20px rgba($accent, 0.3);
     color: $text;
   }
 

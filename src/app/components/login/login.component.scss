@@ -41,7 +41,7 @@ body, :host {
   &.register-mode {
     max-width: 500px;
     min-height: auto;
-    
+
     .login-section {
       flex: 1;
     }
@@ -90,12 +90,12 @@ body, :host {
   &:hover {
     background: rgba($white, 0.1);
     transform: translateX(10px);
-    
+
     .feature-icon {
       background: rgba($white, 0.3);
       transform: scale(1.1);
     }
-    
+
     .feature-text {
       h3, p {
         opacity: 1;
@@ -212,14 +212,14 @@ body, :host {
 }
 
 .register-link {
-  text-align: center;
   margin-top: 20px;
-  width: 100%;
-  
-  p {
-    color: $secondary;
-    margin-bottom: 0;
-    font-size: 14px;
+  text-align: center;
+  border-top: 1px solid #e0e0e0;
+  padding-top: 15px;
+
+  span {
+    margin-right: 5px;
+    color: #666;
   }
 }
 
@@ -379,7 +379,7 @@ form {
   .container {
     flex-direction: column;
     min-height: auto;
-    
+
     &.register-mode {
       max-width: 100%;
     }
@@ -393,7 +393,7 @@ form {
   .logo-text {
     font-size: 42px;
   }
-  
+
   .back-button {
     position: relative;
     top: auto;
@@ -414,14 +414,14 @@ form {
   .logo-text {
     font-size: 38px;
   }
-  
+
   .welcome-content h1 {
     font-size: 28px;
   }
-  
+
   .login-section {
     padding: 40px 20px;
-    
+
     &.full-width {
       padding: 50px 20px;
     }
@@ -429,7 +429,7 @@ form {
 
   .feature {
     padding: 10px;
-    
+
     &:hover {
       transform: none;
       background: rgba($white, 0.05);

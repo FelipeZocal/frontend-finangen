@@ -6,10 +6,13 @@ import { LoginComponent } from './components/login/login.component';
 export const routes: Routes = [
   // Redireciona a rota raiz para login
   { path: '', redirectTo: 'login', pathMatch: 'full' },
-  
+
   // Rota de login (acesso livre)
   { path: 'login', component: LoginComponent },
-  
+
+  // Rota de registro
+  { path: 'register', loadComponent: () => import('./components/register/register.component').then(m => m.RegisterComponent) },
+
   // Rotas protegidas
   {
     path: '',
@@ -44,7 +47,7 @@ export const routes: Routes = [
       },
     ]
   },
-  
+
   // Redireciona rotas não encontradas para login
   { path: '**', redirectTo: 'login' }
 ];

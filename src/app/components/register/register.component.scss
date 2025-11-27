@@ -1,0 +1,65 @@
+.register-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f5f5f5;
+  padding: 20px;
+}
+
+mat-card {
+  max-width: 500px;
+  width: 100%;
+}
+
+mat-card-title {
+  margin-bottom: 20px !important;
+  text-align: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.row {
+  display: flex;
+  gap: 10px;
+
+  mat-form-field {
+    flex: 1;
+  }
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+button[type="submit"] {
+  margin-top: 10px;
+  padding: 6px;
+  font-size: 1.1rem;
+}
+
+mat-card-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 16px;
+  border-top: 1px solid #eee;
+  padding-top: 16px;
+
+  span {
+    color: #666;
+    margin-right: 8px;
+  }
+}
+
+.error-message {
+  color: red;
+  text-align: center;
+  background-color: #ffebee;
+  padding: 10px;
+  border-radius: 4px;
+}

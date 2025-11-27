@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators, AbstractControl } from '@angular/forms';
 import { Router } from '@angular/router';
+import { RouterLink } from '@angular/router'
 import { AuthService } from '../../core/services/auth.service';
 import { finalize } from 'rxjs/operators';
 import { Observable } from 'rxjs';
@@ -21,7 +22,8 @@ import { CommonModule } from '@angular/common';
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    RouterLink
   ],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
@@ -59,7 +61,7 @@ export class LoginComponent {
   formatarCpf(event: any): void {
     const input = event.target as HTMLInputElement;
     let value = input.value.replace(/\D/g, '');
-    
+
     if (value.length > 11) {
       value = value.substring(0, 11);
     }
@@ -75,7 +77,7 @@ export class LoginComponent {
 
     // Atualiza o valor no input
     input.value = value;
-    
+
     // Atualiza o valor no formulário
     this.registerForm.patchValue({ cpf: value });
   }
@@ -84,7 +86,7 @@ export class LoginComponent {
   private senhasConferem(control: AbstractControl) {
     const senha = control.get('senha');
     const confirmarSenha = control.get('confirmarSenha');
-    
+
     if (senha && confirmarSenha && senha.value !== confirmarSenha.value) {
       return { senhasNaoConferem: true };
     }
@@ -121,7 +123,7 @@ export class LoginComponent {
     };
 
     this.loginForm.disable();
-    
+
     this.authService.login(creds).pipe(
       finalize(() => {
         this.loginForm.enable();
@@ -165,7 +167,7 @@ export class LoginComponent {
     console.log('Dados para cadastro:', userData);
 
     this.registerForm.disable();
-    
+
     // **ALTERE AQUI para usar seu serviço real quando tiver**
     this.simularCadastro(userData).pipe(
       finalize(() => {
@@ -176,7 +178,7 @@ export class LoginComponent {
       next: (response) => {
         this.successMessage = 'Cadastro realizado com sucesso! Você já pode fazer login.';
         this.registerForm.reset();
-        
+
         // Alterna automaticamente para login após 3 segundos
         setTimeout(() => {
           this.setLoginMode();

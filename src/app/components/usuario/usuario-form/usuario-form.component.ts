@@ -6,6 +6,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
+import { NgxMaskDirective} from 'ngx-mask';
 
 import { Usuario } from '../../../core/models/usuario.model';
 import { UsuarioService } from '../../../core/services/usuario.service';
@@ -20,7 +21,8 @@ import { UsuarioService } from '../../../core/services/usuario.service';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    MatSelectModule
+    MatSelectModule,
+    NgxMaskDirective
   ],
   templateUrl: './usuario-form.component.html',
   styleUrls: ['./usuario-form.component.scss']

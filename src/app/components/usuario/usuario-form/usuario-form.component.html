@@ -2,10 +2,9 @@
   <div class="dialog-title">
     <h1>{{ isEditMode ? 'Editar Usuário' : 'Novo Usuário' }}</h1>
   </div>
-  
+
   <div class="dialog-content">
     <form [formGroup]="usuarioForm" class="usuario-form">
-      <!-- Nome Completo -->
       <div class="form-field">
         <mat-form-field appearance="fill">
           <mat-label>Nome Completo</mat-label>
@@ -13,29 +12,33 @@
         </mat-form-field>
       </div>
 
-      <!-- RG e CPF -->
       <div class="form-row">
         <div class="form-field">
           <mat-form-field appearance="fill">
             <mat-label>RG</mat-label>
-            <input matInput formControlName="rg" placeholder="Ex: 12.345.678-9" required>
+            <input matInput formControlName="rg"
+                   mask="00.000.000-0||00.000.000-A"
+                   placeholder="00.000.000-0" required>
           </mat-form-field>
         </div>
 
         <div class="form-field">
           <mat-form-field appearance="fill">
             <mat-label>CPF</mat-label>
-            <input matInput formControlName="cpf" placeholder="Ex: 123.456.789-00" required>
+            <input matInput formControlName="cpf"
+                   mask="000.000.000-00"
+                   placeholder="000.000.000-00" required>
           </mat-form-field>
         </div>
       </div>
 
-      <!-- Telefone e Status -->
       <div class="form-row">
         <div class="form-field">
           <mat-form-field appearance="fill">
             <mat-label>Telefone</mat-label>
-            <input matInput formControlName="telefone" placeholder="Ex: (11) 99999-9999" required>
+            <input matInput formControlName="telefone"
+                   mask="(00) 00000-0000"
+                   placeholder="(11) 99999-9999" required>
           </mat-form-field>
         </div>
 
@@ -50,7 +53,6 @@
         </div>
       </div>
 
-      <!-- Email -->
       <div class="form-field">
         <mat-form-field appearance="fill">
           <mat-label>Email</mat-label>
@@ -58,7 +60,6 @@
         </mat-form-field>
       </div>
 
-      <!-- Senha -->
       <div class="form-field">
         <mat-form-field appearance="fill">
           <mat-label>Senha</mat-label>
@@ -67,13 +68,12 @@
         </mat-form-field>
       </div>
 
-      <!-- Mensagem de Erro -->
       <div *ngIf="errorMessage" class="error-message">
         {{ errorMessage }}
       </div>
     </form>
   </div>
-  
+
   <div class="dialog-actions">
     <button mat-button class="btn-cancel" (click)="onCancel()">Cancelar</button>
     <button mat-raised-button class="btn-save" [disabled]="usuarioForm.invalid" (click)="onSave()">

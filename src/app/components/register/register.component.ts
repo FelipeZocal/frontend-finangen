@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common'; // Importante para o *ngIf
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
+import { NgxMaskDirective } from 'ngx-mask';
 
 // Angular Material Imports
 import { MatCardModule } from '@angular/material/card';
@@ -23,7 +24,8 @@ import { UsuarioService } from '../../core/services/usuario.service';
     MatInputModule,       // Resolve erro do input
     MatButtonModule,      // Resolve erro do botão
     MatIconModule,
-    RouterLink            // Resolve a navegação de volta para login
+    RouterLink,            // Resolve a navegação de volta para login
+    NgxMaskDirective
   ],
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
